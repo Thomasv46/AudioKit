@@ -439,6 +439,7 @@ extension MIDI {
 
     internal func handleMIDIMessage(_ event: MIDIEvent, fromInput portID: MIDIUniqueID) {
         for listener in listeners {
+            listener.receivedMIDIData(event, portID: portID)
             let offset = event.offset
             if let type = event.status?.type {
                 guard let eventChannel = event.channel else {
